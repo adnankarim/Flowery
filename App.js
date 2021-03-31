@@ -1,112 +1,52 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import LinearGradient from 'react-native-linear-gradient';
+import { Image } from 'react-native-elements';
+import { Button } from './components/button/Button';
+class App extends Component {
+  render() {
+    return (
+      <LinearGradient style={{ flex: 1, flexDirection: "row" }} colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
+        <Text style={styles.buttonText}>
+          Flowery
+          </Text>
+        <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 100 }} >
+          <Image source={require('./assets/flower.png')} style={{ width: 250, height: 250, padding: 5 }}>
+          </Image>
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+        <View style={{ flex: 1, marginHorizontal: 30, marginTop: 80, fontSize: 25, }}>
+          <Button title={"NN1"} style={{ color: 'black', }}>
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+          </Button>
+          <Button title={"NN1"} style={{ marginTop: 10 }}>
+
+          </Button>
+        </View>
+        <View>
+
+        </View>
+      </LinearGradient >
+    );
+  }
+}
 
 export default App;
+
+
+var styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
+  },
+  buttonText: {
+    fontSize: 28,
+    fontFamily: 'Gill Sans',
+    textAlign: 'center',
+    margin: 10,
+    marginTop: 20,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+  },
+});
