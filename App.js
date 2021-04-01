@@ -3,7 +3,53 @@ import { View, Text, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Image } from 'react-native-elements';
 import { Button } from './components/button/Button';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import Tflite from 'tflite-react-native';
+
+let modelFile = './assets/models/model.tflite'
+
 class App extends Component {
+
+  state = {
+    source: 'null',
+  }
+  selectAnImage = () => {
+    const options = {};
+    launchImageLibrary(options, (req, res) => {
+      if (res.didCancel) {
+        console.log('User Cancelled Image');
+      } else if (res.errorCode) {
+        console.log('Error');
+      } else if (res.errorCode) {
+        console.log('User Pressed Custom Button');
+      } else {
+        this.setState({
+          source: { uri: res.uri },
+        });
+
+
+      }
+    });
+  }
+
+  takeAPhoto = () => {
+    const options = {};
+
+    launchCamera(options, (req, res) => {
+      if (res.didCancel) {
+        console.log('User Cancelled Image');
+      } else if (res.errorCode) {
+        console.log('Error');
+      } else if (res.errorCode) {
+        console.log('User Pressed Custom Button');
+      } else {
+        this.setState({
+          source: { uri: res.uri },
+        });
+
+      }
+    });
+  }
   render() {
     return (
       <LinearGradient
@@ -41,7 +87,7 @@ var styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonText: {
-    fontSize: 28,
+    fontSize: 50,
     fontFamily: 'Gill Sans',
     textAlign: 'center',
     margin: 10,
